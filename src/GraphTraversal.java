@@ -1,5 +1,4 @@
 import org.graphstream.graph.*;
-import org.graphstream.graph.implementations.*;
 import java.util.*;
 
 public class GraphTraversal {
@@ -16,7 +15,6 @@ public class GraphTraversal {
                 dfs(graph, neighbor, visited);
             }
         });
-
     }
 
     // обход в ширину bfs

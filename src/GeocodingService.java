@@ -26,13 +26,16 @@ public class GeocodingService {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(urlString))
-                    .header("User-Agent", USER_AGENT)  // Устанавливаем заголовок User-Agent
+                    .header("User-Agent", USER_AGENT)
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             // преобразование строки ответа в json объект
-            JsonObject jsonResponse = JsonParser.parseString(response.body()).getAsJsonArray().get(0).getAsJsonObject();
+            JsonObject jsonResponse = JsonParser.parseString(response.body())
+                    .getAsJsonArray()
+                    .get(0)
+                    .getAsJsonObject();
 
             // извлечение координат
             if (jsonResponse != null && jsonResponse.has("lat") && jsonResponse.has("lon")) {

@@ -31,19 +31,18 @@ public class Location {
     public double distanceTo(Location other) {
         double latDiff = Math.abs(this.latitude - other.latitude);
         double lonDiff = Math.abs(this.longitude - other.longitude);
-        return Math.sqrt(latDiff * latDiff + lonDiff * lonDiff) * 111; // Приблизительное расстояние в км
+        return Math.sqrt(latDiff * latDiff + lonDiff * lonDiff) * ConfigLoader.getDoubleProperty("coefficient_way"); // Приблизительное расстояние в км
     }
 
     // расчёт потраченного времени на путь между адресами
-    public double TravelTime(double way, double speed) {
+    public static double TravelTime(double way, double speed) {
         if (speed <= 0) {
             throw new IllegalArgumentException("Скорость должна быть больше 0");
         }
         double time = way / speed;
-        // Создаем DecimalFormat с локалью, где точка используется как разделитель
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
         DecimalFormat dF = new DecimalFormat("#.##", symbols);
-        return Double.parseDouble(dF.format(time)); // Преобразуем отформатированное значение обратно в double
+        return Double.parseDouble(dF.format(time));
     }
 
     @Override

@@ -1,19 +1,18 @@
 public class Order {
-
+    // решить со static
     private static String typeOfFood; // Убрали static
     private static int weight;
     private static String startAddress;
     private static String endAddress;
-    public static double deliveryCost = 100;
+
 
     public Order(){}
 
-    public Order(String typeOfFood, int weight, String startAddress, String endAddress, double deliveryCost) {
+    public Order(String typeOfFood, int weight, String startAddress, String endAddress) {
         this.typeOfFood = typeOfFood;
         this.weight = weight;
         this.startAddress = startAddress;
         this.endAddress = endAddress;
-        this.deliveryCost = deliveryCost;
     }
 
     public String getTypeOfFood() {
@@ -32,10 +31,6 @@ public class Order {
         return endAddress;
     }
 
-    public double getDeliveryCost() {
-        return deliveryCost;
-    }
-
     public void setTypeOfFood(String typeOfFood) {
         this.typeOfFood = typeOfFood;
     }
@@ -52,17 +47,12 @@ public class Order {
         this.endAddress = endAddress;
     }
 
-    public void setDeliveryCost(double deliveryCost) {
-        this.deliveryCost = deliveryCost;
-    }
-
-    public static String toString(Order o) {
+    public static String toString(Order order) {
         return "Order{" +
                 "typeOfFood='" + typeOfFood + '\'' +
                 ", weight=" + weight +
-                ", startAddress=" + startAddress +
-                ", endAddress=" + endAddress +
-                ", deliveryCost=" + deliveryCost +
+                ", startAddress='" + startAddress + '\'' +
+                ", endAddress='" + endAddress + '\'' +
                 '}';
     }
 }

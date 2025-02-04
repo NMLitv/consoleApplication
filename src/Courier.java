@@ -1,4 +1,4 @@
-public class Сourier {
+public class Courier {
 
     private String courierName;
     private String lastname;
@@ -9,7 +9,7 @@ public class Сourier {
     private boolean allowed;
     private String address;
 
-    public Сourier(String courierName, String lastname, String competence, double x,
+    public Courier(String courierName, String lastname, String competence, double x,
                    double y, double speed, boolean allowed, String address){
         this.courierName = courierName;
         this.lastname = lastname;

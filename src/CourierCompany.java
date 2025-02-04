@@ -1,18 +1,25 @@
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class CourierCompany {
-    public static double minimumOrderDeliveryCost = 300; // минимальная стоимость доставки
+     // минимальная стоимость доставки
     private static double avarageOrderDeliveryCost;// средняя стоимость заказа
     private static double totalIncome; // выручка
-    public static int quantityOrders;
+    private static int quantityOrders;
 
     // итоговая прибыль
-    public static double calculateProfit(double avarageOrderDeliveryCost, double wholeWay) {
-        double result = 0;
-        double totalExpenses = wholeWay * 15;
+    public static double calculateProfit(double avarageOrderDeliveryCost, double wholeWay, double avarageWeight) {
+        double totalExpenses;
+        if (avarageWeight > ConfigLoader.getDoubleProperty("avarage_weight_orders")) {
+            totalExpenses = wholeWay * ConfigLoader.getDoubleProperty("max_flow_coefficient");
+        } else {
+            totalExpenses = wholeWay * ConfigLoader.getDoubleProperty("min_flow_coefficient");
+        }
         totalIncome = quantityOrders * avarageOrderDeliveryCost;
-        result = totalIncome - totalExpenses;
-        return Double.parseDouble(new DecimalFormat("#.##").format(result));
+        double result = totalIncome - totalExpenses;
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+        return Double.parseDouble(new DecimalFormat("#.##", symbols).format(result));
     }
 
     public static int getQuantityOrders() {
@@ -31,11 +38,11 @@ public class CourierCompany {
         CourierCompany.totalIncome = totalIcome;
     }
 
-    public static double getAvarageOrderDeliveryCost() {
+    public double getAvarageOrderDeliveryCost() {
         return avarageOrderDeliveryCost;
     }
 
-    public static void setAvarageOrderDeliveryCost(double avarageOrderDeliveryCost) {
+    public void setAvarageOrderDeliveryCost(double avarageOrderDeliveryCost) {
         CourierCompany.avarageOrderDeliveryCost = avarageOrderDeliveryCost;
     }
 }
